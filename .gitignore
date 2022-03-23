@@ -31,6 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+### don't allow large files by accident ###
 /datavault-common/src/test/resources/big_data/50MB_file
 /datavault-common/src/test/resources/big_data/big_file
-/datavault-common/src/test/java/datavaultplatform/common/crypto/EncryptionTest.java
+
+
