@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"org.datavaultplatform.webapp.controlllers"})
+@ComponentScan({"org.datavaultplatform.webapp.controllers"})
 public class WebApplication {
 
   public static void main(String[] args) {

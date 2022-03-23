@@ -18,10 +18,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>datavault</name>
 	<description>DataVault with SpringBoot</description>
+
 	<scm>
 		<url>https://github.com/DataVault/datavault</url>
 	</scm>
+
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<skip.unit.tests>false</skip.unit.tests>
 		<java.version>1.8</java.version>
 	</properties>
