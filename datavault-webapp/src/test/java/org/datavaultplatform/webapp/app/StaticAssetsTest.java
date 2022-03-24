@@ -22,6 +22,7 @@ public class StaticAssetsTest {
 
   private static final MediaType JAVASCRIPT = MediaType.parseMediaType("application/javascript");
   private static final MediaType CSS = MediaType.parseMediaType("text/css");
+  private static final MediaType ICON = MediaType.parseMediaType("image/x-icon");
 
   @Autowired
   MockMvc mvc;
@@ -29,7 +30,7 @@ public class StaticAssetsTest {
   @Test
   void testStaticJavascript() throws Exception {
 
-    MvcResult res = mvc.perform(get("/js/helloWorld.js"))
+    MvcResult res = mvc.perform(get("/resources/test/js/helloWorld.js"))
         .andExpect(content().string(Matchers.containsString("Hello World!")))
         .andDo(print())
         .andReturn();
@@ -39,9 +40,19 @@ public class StaticAssetsTest {
   }
 
   @Test
+  void testStaticFavico() throws Exception {
+
+    MvcResult res = mvc.perform(get("/resources/favicon.ico"))
+        .andReturn();
+
+    MediaType actual = MediaType.parseMediaType(res.getResponse().getContentType());
+    Assertions.assertTrue(actual.isCompatibleWith(ICON));
+  }
+
+  @Test
   void testStaticCSS() throws Exception {
 
-    MvcResult res = mvc.perform(get("/css/main.css"))
+    MvcResult res = mvc.perform(get("/resources/test/css/main.css"))
         .andExpect(content().string(Matchers.containsString("hello-title")))
         .andDo(print())
         .andReturn();
