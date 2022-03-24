@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by stuartlewis on 02/10/15.
  */
 @Controller
-class ErrorController {
+class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
 
     private static final Logger logger = LoggerFactory.getLogger(ErrorController.class);
 
