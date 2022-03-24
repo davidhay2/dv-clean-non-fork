@@ -1,4 +1,4 @@
-package org.datavaultplatform.webapp.controllers.fm;
+package org.datavaultplatform.webapp.controllers.test.api.fm;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
