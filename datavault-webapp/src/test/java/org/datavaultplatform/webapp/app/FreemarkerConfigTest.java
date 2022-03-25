@@ -26,9 +26,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @WebMvcTest
 @AddTestProperties
-@Disabled
 public class FreemarkerConfigTest {
-  /*
 
   Field fPrefix = UrlBasedViewResolver.class.getDeclaredField("prefix");
   Field fSuffix = UrlBasedViewResolver.class.getDeclaredField("suffix");
@@ -50,6 +48,7 @@ public class FreemarkerConfigTest {
   }
 
   @Test
+  @Disabled
   void testFreemarkerConfigurer() throws IOException {
     assertNotNull(freeMarkerConfigurer);
     Configuration config = freeMarkerConfigurer.getConfiguration();
@@ -95,6 +94,5 @@ public class FreemarkerConfigTest {
     String contentType = (String) fContentType.get(freeMarkerViewResolver);
     assertEquals("text/html;charset=UTF-8", contentType);
   }
-  */
 
 }

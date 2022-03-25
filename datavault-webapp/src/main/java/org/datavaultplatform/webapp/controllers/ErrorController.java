@@ -29,7 +29,7 @@ class ErrorController implements org.springframework.boot.web.servlet.error.Erro
 
         logger.error("An error occurred: {}", exceptionMessage, throwable);
 
-        if (403 == statusCode) {
+        if (statusCode != null && statusCode == 403) {
             return "auth/denied";
         }
 

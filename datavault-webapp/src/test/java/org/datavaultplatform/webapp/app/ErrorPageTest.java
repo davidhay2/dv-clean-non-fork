@@ -19,7 +19,7 @@ public class ErrorPageTest {
     ResponseEntity<String> respEntity = restTemplate.getForEntity("/error", String.class);
     System.out.println(respEntity);
     Assertions.assertThat(respEntity.getBody()).contains("An error has occured!");
-    Assertions.assertThat(respEntity.getBody()).doesNotContain("SimulatedError");
+    Assertions.assertThat(respEntity.getBody()).contains("Error code null returned for Unknown with message:");
   }
 
   @Test
