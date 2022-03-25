@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!--hello.ftl-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">

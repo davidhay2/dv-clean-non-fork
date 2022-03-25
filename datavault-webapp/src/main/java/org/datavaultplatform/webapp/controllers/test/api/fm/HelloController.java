@@ -15,4 +15,11 @@ public class HelloController {
     return "hello";
   }
 
+  @GetMapping("/nested")
+  public String nested(Model model,
+      @RequestParam(value="name", required=false, defaultValue="World") String name) {
+    model.addAttribute("name", name);
+    return "nested/nested";
+  }
+
 }

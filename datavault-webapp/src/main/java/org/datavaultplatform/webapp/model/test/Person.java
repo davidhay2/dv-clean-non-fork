@@ -1,4 +1,4 @@
-package org.datavaultplatform.webapp.controllers;
+package org.datavaultplatform.webapp.model.test;
 
 public class Person {
 

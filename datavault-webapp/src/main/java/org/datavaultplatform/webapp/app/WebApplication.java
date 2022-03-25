@@ -1,16 +1,25 @@
 package org.datavaultplatform.webapp.app;
 
+import static java.util.Collections.singletonList;
+
+import org.datavaultplatform.webapp.config.FreeMarkerConfig;
 import org.datavaultplatform.webapp.config.MvcConfig;
+import org.datavaultplatform.webapp.config.PrivilegeEvaluatorConfig;
 import org.datavaultplatform.webapp.config.WebConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 @SpringBootApplication
 @ComponentScan({"org.datavaultplatform.webapp.controllers"})
-@Import({WebConfig.class, MvcConfig.class})
+@Import({WebConfig.class, MvcConfig.class, FreeMarkerConfig.class, PrivilegeEvaluatorConfig.class})
 public class WebApplication {
+
+  public WebApplication(FreeMarkerConfigurer freeMarkerConfigurer) {
+    freeMarkerConfigurer.getTaglibFactory().setClasspathTlds(singletonList("/META-INF/security.tld"));
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(WebApplication.class, args);
