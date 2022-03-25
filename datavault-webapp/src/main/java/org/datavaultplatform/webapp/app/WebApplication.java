@@ -2,7 +2,6 @@ package org.datavaultplatform.webapp.app;
 
 import static java.util.Collections.singletonList;
 
-import org.datavaultplatform.webapp.config.HttpSessionListenerConfig;
 import org.datavaultplatform.webapp.config.MvcConfig;
 import org.datavaultplatform.webapp.config.PrivilegeEvaluatorConfig;
 import org.datavaultplatform.webapp.config.WebConfig;
@@ -14,8 +13,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 @SpringBootApplication
 @ComponentScan({"org.datavaultplatform.webapp.controllers"})
-@Import({WebConfig.class, MvcConfig.class, PrivilegeEvaluatorConfig.class,
-    HttpSessionListenerConfig.class})
+@Import({WebConfig.class, MvcConfig.class, PrivilegeEvaluatorConfig.class})
 public class WebApplication {
 
   public WebApplication(FreeMarkerConfigurer freeMarkerConfigurer) {
