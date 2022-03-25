@@ -30,7 +30,7 @@ public class StaticAssetsTest {
   @Test
   void testStaticJavascript() throws Exception {
 
-    MvcResult res = mvc.perform(get("/resources/test/js/helloWorld.js"))
+    MvcResult res = mvc.perform(get("/resources/test/js/hello.js"))
         .andExpect(content().string(Matchers.containsString("Hello World!")))
         .andDo(print())
         .andReturn();
@@ -52,7 +52,7 @@ public class StaticAssetsTest {
   @Test
   void testStaticCSS() throws Exception {
 
-    MvcResult res = mvc.perform(get("/resources/test/css/main.css"))
+    MvcResult res = mvc.perform(get("/resources/test/css/hello.css"))
         .andExpect(content().string(Matchers.containsString("hello-title")))
         .andDo(print())
         .andReturn();

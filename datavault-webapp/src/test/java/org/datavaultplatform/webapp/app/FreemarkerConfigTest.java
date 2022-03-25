@@ -56,9 +56,9 @@ public class FreemarkerConfigTest {
     assertTrue(preferFS);
 
     TemplateLoader loader = config.getTemplateLoader();
-    Object helloTemplateSource = loader.findTemplateSource("hello.ftl");
+    Object helloTemplateSource = loader.findTemplateSource("test/hello.ftl");
     String helloTemplateSourceStr = helloTemplateSource.toString();
-    assertThat(helloTemplateSourceStr).endsWith("classes/freemarker/hello.ftl");
+    assertThat(helloTemplateSourceStr).endsWith("classes/freemarker/test/hello.ftl");
 
     Object errorTemplatesource = loader.findTemplateSource("error/error.ftl");
     String errorTemplatesourceStr = errorTemplatesource.toString();
@@ -69,11 +69,11 @@ public class FreemarkerConfigTest {
 
     assertEquals("UTF-8", config.getURLEscapingCharset());
 
-    ClassPathResource res1 = new ClassPathResource("freemarker/hello.ftl");
+    ClassPathResource res1 = new ClassPathResource("freemarker/test/hello.ftl");
     assertEquals("<!DOCTYPE html><!--hello.ftl-->", getFirstLine(res1));
 
-    ClassPathResource res2 = new ClassPathResource("freemarker/nested/nested.ftl");
-    assertEquals("<!DOCTYPE html><!--nested.ftl-->", getFirstLine(res2));
+    ClassPathResource res2 = new ClassPathResource("freemarker/error/error.ftl");
+    assertEquals("<!--error.ftl-->", getFirstLine(res2));
   }
 
   public String getFirstLine(ClassPathResource res) throws IOException {
