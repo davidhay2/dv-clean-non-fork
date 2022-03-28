@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import com.google.common.collect.ImmutableSet;
-import java.util.List;
 import java.util.Set;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -45,9 +44,16 @@ public class ActuatorTest {
   }
 
   @Test
+  void testCurrentTime() throws Exception {
+    mvc.perform(get("/actuator/custom-time"))
+        .andExpect(jsonPath("$.current-time").exists())
+        .andDo(print());
+  }
+
+  @Test
   void testEndpoints() throws Exception {
 
-    assertEquals(ImmutableSet.of("env","beans","info","health"), endpoints);
+    assertEquals(ImmutableSet.of("env","beans","info","health","custom-time"), endpoints);
 
     ResultActions temp = mvc.perform(get("/actuator"))
         .andExpect(status().isOk()).andDo(print());
