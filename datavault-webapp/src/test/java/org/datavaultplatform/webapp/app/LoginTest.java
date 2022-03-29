@@ -46,7 +46,7 @@ public class LoginTest {
   void testUnsecure() throws Exception {
     mvc.perform(get("/index")).andExpect(status().isOk());
     mvc.perform(get("/test/hello")).andExpect(status().isOk());
-    //mvc.perform(get("/error")).andExpect(status().isOk());
+    mvc.perform(get("/error")).andExpect(status().isInternalServerError());
   }
 
   @Test
