@@ -9,7 +9,8 @@ import org.springframework.test.context.TestPropertySource;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @TestPropertySource(
-    locations = "classpath:application-test.properties")
+    locations = "classpath:application-test.properties",
+    properties = "spring.main.allow-bean-definition-overriding=true")
 public @interface AddTestProperties {
 
 }
