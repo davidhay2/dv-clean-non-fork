@@ -24,7 +24,7 @@ public class ErrorPageTest {
 
   @Test
   public void testErrorPageBecauseOfException() {
-    ResponseEntity<String> respEntity = restTemplate.getForEntity("/oops", String.class);
+    ResponseEntity<String> respEntity = restTemplate.getForEntity("/test/oops", String.class);
     System.out.println(respEntity);
     Assertions.assertThat(respEntity.getBody()).contains("An error has occured!");
     Assertions.assertThat(respEntity.getBody()).contains("SimulatedError");

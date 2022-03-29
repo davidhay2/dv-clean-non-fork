@@ -20,7 +20,7 @@ public class TimeControllerTest {
   @Test
   void testTimeController() throws Exception {
 
-    mvc.perform(get("/time")).andDo(print());
+    mvc.perform(get("/test/time")).andDo(print());
 
   }
 

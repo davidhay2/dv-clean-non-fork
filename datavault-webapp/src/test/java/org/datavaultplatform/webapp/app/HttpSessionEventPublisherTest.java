@@ -37,7 +37,7 @@ public class HttpSessionEventPublisherTest {
 
   @Test
   void testSessionCreated() throws InterruptedException {
-    ResponseEntity<String> response = template.getForEntity("/hello", String.class);
+    ResponseEntity<String> response = template.getForEntity("/test/hello", String.class);
     assertEquals(response.getStatusCode(), HttpStatus.OK);
     String expectedSessionId = getSessionId(response.getHeaders());
 

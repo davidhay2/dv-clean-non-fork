@@ -23,7 +23,7 @@ public class HelloControllerTest {
   @Test
   void testHelloController() throws Exception {
     String id = "xyz123";
-    mvc.perform(get("/hello?name=" + id))
+    mvc.perform(get("/test/hello?name=" + id))
         .andDo(print())
         .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
         .andExpect(MockMvcResultMatchers.content().string(

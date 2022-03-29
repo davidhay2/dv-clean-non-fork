@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@RequestMapping("/test")
 public class FileUploadController {
 
   @RequestMapping(value = "/upload/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, method =  RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)

@@ -1,5 +1,6 @@
 package org.datavaultplatform.webapp.app;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -44,7 +45,7 @@ public class MultiPartUploadTest {
     long expectedSize = dvLogo.contentLength();
     String expectedResult = String.format("name[file]type[image/jpeg]size[%d]", expectedSize);
 
-    mockMvc.perform(multipart("/upload/file").file(file))
+    mockMvc.perform(multipart("/test/upload/file").file(file).with(csrf()))
         .andDo(print())
         .andExpect(content().string(expectedResult))
         .andExpect(status().isOk());
@@ -66,9 +67,10 @@ public class MultiPartUploadTest {
     long expectedSize = dvLogo.contentLength();
     String expectedResult = String.format("name[file]type[image/jpeg]size[%d]first[James]last[Bond]", expectedSize);
 
-    mockMvc.perform(multipart("/upload/multi")
+    mockMvc.perform(multipart("/test/upload/multi")
             .file(file)
-            .file(personFile))
+            .file(personFile)
+            .with(csrf()))
         .andDo(print())
         .andExpect(content().string(expectedResult))
         .andExpect(status().isOk());
