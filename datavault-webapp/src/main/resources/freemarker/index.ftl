@@ -2,12 +2,18 @@
 <@sec.authentication var="principal" property="principal" />
 <html>
 INDEX PAGE
+<hr/>
 <@sec.authorize access="isAuthenticated()">
-  logged in as <@sec.authentication property="principal.username" />
-    ${principal.username}
+  <ul>
+    <li><a href="${springMacroRequestContext.getContextPath()}/auth/logout">Logout</a></li>
+    <li>logged in as <@sec.authentication property="principal.username" /></li>
+  </ul>
 </@sec.authorize>
 
 <@sec.authorize access="! isAuthenticated()">
-  Not logged in
+  <ul>
+    <li>NOT logged in</li>
+    <li><a href="${springMacroRequestContext.getContextPath()}/auth/login">LOGIN</a></li>
+  </ul>
 </@sec.authorize>
 </html>
