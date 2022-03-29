@@ -29,17 +29,4 @@ public class WebConfig {
     return new HttpSessionEventPublisher();
   }
 
-  @Bean
-  public FilterRegistrationBean filterRegistrationBean() {
-    CharacterEncodingFilter filter = new CharacterEncodingFilter();
-    filter.setEncoding(StandardCharsets.UTF_8.name());
-    filter.setForceEncoding(true);
-
-    FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-    registrationBean.setFilter(filter);
-    registrationBean.addUrlPatterns("/*");
-    return registrationBean;
-  }
-
-
 }
