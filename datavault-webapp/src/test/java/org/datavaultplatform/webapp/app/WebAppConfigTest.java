@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @ComponentScan("org.datavaultplatform.webapp.testcontrollers")
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AddTestProperties
 class WebAppConfigTest {
 
 	@Autowired
