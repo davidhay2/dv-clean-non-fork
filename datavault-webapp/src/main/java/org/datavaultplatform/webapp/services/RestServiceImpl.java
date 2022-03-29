@@ -3,6 +3,7 @@ package org.datavaultplatform.webapp.services;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 import org.datavaultplatform.common.model.ArchiveStore;
 import org.datavaultplatform.common.model.DataManager;
 import org.datavaultplatform.common.model.Dataset;
@@ -40,6 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -53,6 +55,7 @@ import org.springframework.web.client.RestTemplate;
  * Time: 14:04
  */
 @Service
+@Profile("!standalone")
 public class RestServiceImpl implements RestService {
 
     private static final Logger logger = LoggerFactory.getLogger(RestServiceImpl.class);
@@ -911,6 +914,5 @@ public class RestServiceImpl implements RestService {
         HttpEntity<?> response = put(brokerURL + "/admin/retentionpolicies", CreateRetentionPolicy.class, createRetentionPolicy);
         return (CreateRetentionPolicy)response.getBody();
     }
-
 
 }

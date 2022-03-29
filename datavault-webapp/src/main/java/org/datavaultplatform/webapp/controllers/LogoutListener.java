@@ -3,6 +3,8 @@ package org.datavaultplatform.webapp.controllers;
 import java.util.List;
 import org.datavaultplatform.common.request.CreateClientEvent;
 import org.datavaultplatform.webapp.services.NotifyLogoutService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.core.Authentication;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LogoutListener implements ApplicationListener<SessionDestroyedEvent> {
-    
+
+    Logger LOG = LoggerFactory.getLogger(LogoutListener.class);
+
     private final NotifyLogoutService service;
 
     @Autowired
@@ -37,9 +41,10 @@ public class LogoutListener implements ApplicationListener<SessionDestroyedEvent
             
             // Log the event with the broker
             try {
+                //TODO - this method returns a string which we are ignoring
                 service.notifyLogout(clientEvent);
-            }catch (Exception e){
-                System.err.println("Error when notifying Logout to Broker!");
+            }catch (RuntimeException ex){
+                LOG.error("Error when notifying Logout to Broker!",ex);
             }
         }
     }
