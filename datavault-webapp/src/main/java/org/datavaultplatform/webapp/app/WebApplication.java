@@ -16,7 +16,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 @SpringBootApplication
-@ComponentScan({"org.datavaultplatform.webapp.controllers"})
+@ComponentScan({"org.datavaultplatform.webapp.controllers","org.datavaultplatform.webapp.services"})
 @PropertySources({
     @PropertySource("classpath:application.properties"),
     @PropertySource("classpath:datavault.properties")
