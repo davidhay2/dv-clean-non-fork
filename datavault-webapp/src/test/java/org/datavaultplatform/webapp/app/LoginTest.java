@@ -9,24 +9,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import javax.servlet.http.HttpSession;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.*;
 
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -53,16 +50,20 @@ public class LoginTest {
   void testSecure() throws Exception {
     MvcResult result = mvc.perform(get("/secure")).andReturn();
     assertEquals(HttpStatus.FOUND.value(), result.getResponse().getStatus());
-    //TODO - this works but seems wrong
-    assertEquals("http://localhost/login", result.getResponse().getRedirectedUrl());
+    assertEquals("http://localhost/auth/login", result.getResponse().getRedirectedUrl());
   }
 
   @Nested
   class LoginTests {
 
+    ResultActions login(String username, String password) throws Exception {
+      return mvc.perform(formLogin().loginProcessingUrl("/auth/security_check").user(username).password(password));
+    }
+
     @Test
     void success() throws Exception {
-      MvcResult result = mvc.perform(formLogin().user(username).password(password))
+      MvcResult result =
+          login(username, password)
           .andExpect(authenticated())
           .andExpect(redirectedUrl("/"))
           .andDo(print())
@@ -73,9 +74,9 @@ public class LoginTest {
 
     @Test
     void fail() throws Exception {
-      mvc.perform(formLogin().user(username).password("XXXX"))
+      login(username, "XXXX")
           .andExpect(unauthenticated())
-          .andExpect(redirectedUrl("/login?error"))
+          .andExpect(redirectedUrl("/auth/login?error=true"))
           .andDo(print());
     }
 
