@@ -1,6 +1,8 @@
 package org.datavaultplatform.webapp.controllers;
 
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,17 +15,26 @@ public class AuthController {
     
     private final static String DEFAULT_LOGOUT_URL = "/auth/login?logout";
     
-    private String welcome;
-    private String logoutUrl;
-    
-    public void setWelcome(String welcome) {
+    private final String welcome;
+    private final String logoutUrl;
+
+    /**
+    <bean id="authController" class="org.datavaultplatform.webapp.controllers.AuthController">
+        <property name="welcome" value="${webapp.welcome}"/>
+        <property name="logoutUrl" value="${webapp.logout.url:}"/>
+    </bean>
+    **/
+    @Autowired
+    public AuthController(
+        @Value("${webapp.welcome}") String welcome,
+        @Value("${webapp.logout.url}") String logoutUrl) {
+        if (logoutUrl == null || logoutUrl.equals("")) {
+            logoutUrl = AuthController.DEFAULT_LOGOUT_URL;
+        }
         this.welcome = welcome;
-    }
-    
-    public void setLogoutUrl(String logoutUrl) {
         this.logoutUrl = logoutUrl;
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value="error", required=false) boolean error,
                                @RequestParam(value="logout", required=false) String logout,
@@ -53,11 +64,6 @@ public class AuthController {
     public String getDeniedPage(ModelMap model, HttpSession session) {
 
         session.invalidate();
-        
-        if (logoutUrl == null || logoutUrl.equals("")) {
-            logoutUrl = AuthController.DEFAULT_LOGOUT_URL;
-        }
-        
         return "redirect:"+logoutUrl;
     }
 
