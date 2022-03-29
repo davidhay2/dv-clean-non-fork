@@ -6,6 +6,7 @@ import org.datavaultplatform.webapp.config.ActutatorConfig;
 import org.datavaultplatform.webapp.config.MvcConfig;
 import org.datavaultplatform.webapp.config.PrivilegeEvaluatorConfig;
 import org.datavaultplatform.webapp.config.WebConfig;
+import org.datavaultplatform.webapp.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +15,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 @SpringBootApplication
 @ComponentScan({"org.datavaultplatform.webapp.controllers"})
-@Import({WebConfig.class, MvcConfig.class, PrivilegeEvaluatorConfig.class, ActutatorConfig.class})
+@Import({WebConfig.class, MvcConfig.class, PrivilegeEvaluatorConfig.class, ActutatorConfig.class,
+    WebSecurityConfig.class})
 public class WebApplication {
 
   public WebApplication(FreeMarkerConfigurer freeMarkerConfigurer) {
