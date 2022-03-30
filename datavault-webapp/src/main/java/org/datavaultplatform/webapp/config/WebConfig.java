@@ -11,6 +11,7 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 @Configuration
 public class WebConfig {
 
+    /*
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
       CommonsRequestLoggingFilter filter
@@ -23,6 +24,7 @@ public class WebConfig {
       filter.setAfterMessagePrefix("AFTER MESSAGE : ");
       return filter;
     }
+    */
 
   @Bean
   public HttpSessionEventPublisher httpSessionEventPublisher() {
